@@ -1,0 +1,28 @@
+{% extends 'attendance/layout.html' %}
+{% load static %}
+{% block title %}Add Students{% endblock title %}
+{% block body %}
+    <div class="container align-items-center text-center">
+    <div class="addcard card border-primary">
+    <div class="card-header bg-transparent border-primary"><h3>Add Students to Class</h3></div>
+    <div class="card-body">
+    <form action="{% url 'addstudent' id=id %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    <small id="emailHelp" class="form-text text-muted">Please check spelling to make sure details are accurate.</small>
+    <label for="studentnamefield">Student's Full Name:</label>
+    <input class="col-5" type="text" class="form-control" id="studentname" name="studentname" aria-describedby="studentHelp" placeholder="Enter student name">
+    </div>
+    <div class="form-group">
+    <label for="matricfield">Student's Matriculation Number:</label>
+    <input class="col-5" type="text" class="form-control" id="matricno" name="matricno" placeholder="Enter Matric. no.">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Student</button>
+    </form>
+    <a class="btn btn-success done" href="{% url 'dashboard' %}">Done <i class="fas fa-check"></i></a>
+    {% if message %}<p class="message toast">{{message}}</p>{% endif %}
+    {% if error %}<p class="error toast">{{error}}</p>{% endif %}
+    </div>
+    </div>
+    </div>
+{% endblock body %}

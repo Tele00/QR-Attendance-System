@@ -1,0 +1,51 @@
+.brand {
+    color: white;
+    font-style: bold;
+}
+
+.error {
+    color: red;
+}
+
+.message {
+    color: green;
+}
+
+.card {
+    margin-bottom: 45px !important;
+}
+
+.addcard {
+    margin-top: 45px;
+}
+
+.done {
+    margin-top: 15px;
+}
+
+.toast {
+    margin-top: 10px;
+}
+html, body {
+    height: 100%;
+}
+.main {
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+.wrapper {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.help-text {
+    color: grey;
+}
+
+.log-form {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+

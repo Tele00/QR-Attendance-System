@@ -1,0 +1,63 @@
+{% extends 'attendance/layout.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock title %}
+
+{% block body %}
+{% if error %}
+<p class="error">{{error}}</p>
+{% endif %}
+<h1>Classes <span class="badge badge-secondary">{{length}}</span></h1>
+{% for class in class_list %}
+<div class="card">
+  <h5 class="card-header">
+    <div class="row align-items-center">
+        <div class="col-10">{{ class.0 }}</div>
+        <div class="col-2">
+            <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Action
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" target="_blank" href="{% url 'downloadqr' id=class.1 %}"><i class="fas fa-qrcode"></i> View QR</a>
+                <a class="dropdown-item" href="#"><i class="fas fa-qrcode"></i> Change QR</a>
+                <a class="dropdown-item" href="{% url 'addstudent' id=class.1 %}"><i class="fas fa-users"></i> Add Students</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'downloadattendance' id=class.1  %}" download><i class="fas fa-file-download"></i> Download Attendance</a>
+                <a class="dropdown-item" href="{% url 'delete' id=class.1 %}"><i class="fas fa-trash-alt"></i> Delete Class</a>
+            </div>
+        </div>
+        </div>
+    </div>
+  </h5>
+  <div class="card-body">
+    <!--Table-->
+  <table id="dtBasicExample" class="table table-striped table-bordered table-sm table-responsive" cellspacing="0" width="100%">
+  {% for row in class.2 %}
+  {% if row.0 == 'S/N' %}
+  <thead>
+    <tr>
+      {% for header in row %}
+      <th class="th-sm">{{header}}
+    
+      </th>
+      {% endfor %}
+    </tr>
+  </thead>
+  {% else %}
+  <tbody>
+    <tr>
+    {% for field in row %}
+      <td>{{field}}</td>
+      {% endfor %}
+    </tr>
+    </tbody>
+  {% endif %}
+  {% endfor %}
+  </table>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-secondary"><i class="fas fa-file-alt"></i> View Full Attendance Sheet</button>
+  </div>
+</div>
+{% endfor %}
+{% endblock body %}
